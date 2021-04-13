@@ -1,0 +1,76 @@
+---
+- name: Install openssh-server
+  apt:
+    name: openssh-server
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
+- name: sshd_config Port
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*Port'
+    line: 'Port 3351'
+  notify: Restart sshd
+
+- name: sshd_config PermitRootLogin
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: Restart sshd
+
+- name: sshd_config PasswordAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify: Restart sshd
+
+
+
+- name: Install UFW
+  apt:
+    name: ufw
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
+- name: reject all
+  ufw:
+    state: enabled
+    policy: reject
+    logging: low
+
+- name: limit ssh 3351/tcp
+  ufw:
+    rule: limit
+    proto: tcp
+    port: 3351
+
+
+
+- name: User cees
+  user:
+    name: cees
+    comment: Cees van de Griend
+    shell: /bin/bash
+    groups: adm, sudo
+    state: present
+
+- name: User authorized_key
+  authorized_key:
+    user: cees
+    state: present
+    key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtBQ/gFn5J5/S2mBISA5lxoxxt3Kv0Tv3WGPEJQMqdu cees@griend.eu
+
+
+
+
+- name: Install openssh-server
+  apt:
+    name: openssh-server
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
