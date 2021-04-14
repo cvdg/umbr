@@ -1,0 +1,17 @@
+---
+- name: Install firewalld
+  apt:
+    name: firewalld
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+  notify: Restart sshd
+
+- name: firewalld default
+  firewalld:
+    zone: public
+    permanent: true
+    state: enabled
+  vars:
+    ansible_python_interpreter: '/usr/bin/python3'
+

@@ -10,7 +10,7 @@
   lineinfile:
     path: /etc/ssh/sshd_config
     regex: '^.*Port'
-    line: 'Port 3351'
+    line: 'Port 22'
   notify: Restart sshd
 
 - name: sshd_config PermitRootLogin
@@ -26,3 +26,17 @@
     regex: '^.*PasswordAuthentication'
     line: 'PasswordAuthentication no'
   notify: Restart sshd
+
+- name: sshd_config AllowGroups
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: 'AllowGroups ssh'
+  notify: Restart sshd
+
+- name: firewalld ssh
+  firewalld:
+    service: ssh
+    permanent: true
+    state: enabled
+  vars:
+    ansible_python_interpreter: '/usr/bin/python3'

@@ -4,7 +4,7 @@
     name: cees
     comment: Cees van de Griend
     shell: /bin/bash
-    groups: adm, sudo
+    groups: adm, sudo, ssh
     state: present
 
 - name: User authorized_key
