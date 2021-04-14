@@ -1,0 +1,14 @@
+---
+- name: User cees
+  user:
+    name: cees
+    comment: Cees van de Griend
+    shell: /bin/bash
+    groups: adm, sudo
+    state: present
+
+- name: User authorized_key
+  authorized_key:
+    user: cees
+    state: present
+    key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtBQ/gFn5J5/S2mBISA5lxoxxt3Kv0Tv3WGPEJQMqdu cees@griend.eu

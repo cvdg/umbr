@@ -1,0 +1,12 @@
+---
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
+- name: dpkg-reconfigure -f noninteractive -p low unattended-upgrades
+  command:
+    cmd: dpkg-reconfigure -f noninteractive -p low unattended-upgrades
+    creates: /etc/apt/apt.conf.d/20auto-upgrades

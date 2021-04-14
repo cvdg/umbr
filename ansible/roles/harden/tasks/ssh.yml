@@ -1,0 +1,28 @@
+---
+- name: Install openssh-server
+  apt:
+    name: openssh-server
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
+- name: sshd_config Port
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*Port'
+    line: 'Port 3351'
+  notify: Restart sshd
+
+- name: sshd_config PermitRootLogin
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: Restart sshd
+
+- name: sshd_config PasswordAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^.*PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify: Restart sshd

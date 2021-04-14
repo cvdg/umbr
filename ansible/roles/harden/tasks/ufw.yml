@@ -1,0 +1,19 @@
+---
+- name: Install UFW
+  apt:
+    name: ufw
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+
+- name: UFW deny all
+  ufw:
+    state: enabled
+    policy: deny
+    logging: low
+
+- name: UFW limit ssh 3351/tcp
+  ufw:
+    rule: limit
+    proto: tcp
+    port: 3351
