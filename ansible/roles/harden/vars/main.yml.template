@@ -1,0 +1,8 @@
+---
+harden:
+  user:
+    name: user
+    password: secret
+    comment: User Name
+    authorized_key: ssh-ed25519 AAAA**** user@example.com
+

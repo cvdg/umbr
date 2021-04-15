@@ -15,16 +15,18 @@
     group: root
     mode: 0600
 
-- name: User cees
+- name: "user {{ harden.user.name }}"
   user:
-    name: cees
-    comment: Cees van de Griend
+    name: "{{ harden.user.name }}"
+    comment: "{{ harden.user.comment }}"
+    password: "{{ harden.user.password | password_hash('sha512') }}"
+    update_password: on_create
     shell: /bin/bash
     groups: adm, sudo, ssh
     state: present
 
-- name: User authorized_key
+- name: user authorized_key
   authorized_key:
-    user: cees
+    user: "{{ harden.user.name }}"
     state: present
-    key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtBQ/gFn5J5/S2mBISA5lxoxxt3Kv0Tv3WGPEJQMqdu cees@griend.eu
+    key: "{{ harden.user.authorized_key }}"

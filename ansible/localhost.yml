@@ -1,6 +1,6 @@
 #
 # Usage:
-#   sudo ansible-playbook localhost.yml
+#   sudo ansible-playbook --ask-vault-pass localhost.yml
 #
 ---
 - hosts: 127.0.0.1
