@@ -6,3 +6,4 @@
     cache_valid_time: 3600
     autoclean: yes
     autoremove: yes
+  when: ansible_distribution == 'Debian'

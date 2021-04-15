@@ -1,4 +1,20 @@
 ---
+- name: Install sudo
+  apt:
+    name: sudo
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+  when: ansible_distribution == 'Debian'
+
+- name: sudo %adm
+  copy:
+    src: etc/sudoers.d/adm
+    dest: /etc/sudoers.d/adm
+    owner: root
+    group: root
+    mode: 0600
+
 - name: User cees
   user:
     name: cees

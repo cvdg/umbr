@@ -1,0 +1,4 @@
+#
+# This file is maintained by ansible and changes will be overwritten.
+#
+%adm ALL=(ALL) NOPASSWD: ALL

@@ -5,8 +5,11 @@
     update_cache: yes
     cache_valid_time: 3600
     state: latest
+  register: apt_output
+  when: ansible_distribution == 'Debian'
 
 - name: dpkg-reconfigure -f noninteractive -p low unattended-upgrades
   command:
     cmd: dpkg-reconfigure -f noninteractive -p low unattended-upgrades
     creates: /etc/apt/apt.conf.d/20auto-upgrades
+  when: apt_output.changed
