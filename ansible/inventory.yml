@@ -1,3 +1,6 @@
 all:
-   hosts:
-     localhost:
+  children:
+    linode:
+      hosts:
+        linode01:
+          ansible_host: 139.177.180.50

@@ -1,0 +1,11 @@
+#
+# Usage:
+#   ansible-playbook --ask-vault-pass linode.yml
+#
+---
+- hosts: linode
+  become: true
+  roles:
+  - role: harden
+    tags:
+    - harden
