@@ -1,3 +1,0 @@
-linode_token = "aaa***bbb"
-root_password = "secret"
-authorized_key = "ssh-ed25519 AAAA*** user@example.com"

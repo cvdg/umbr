@@ -3,4 +3,4 @@ all:
     linode:
       hosts:
         linode01:
-          ansible_host: 139.177.180.50
+          ansible_host: 139.177.176.156

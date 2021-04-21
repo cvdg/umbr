@@ -6,3 +6,6 @@
 - include_tasks: unattended-upgrades.yml
 
 - include_tasks: upgrade.yml
+
+- name: Reboot
+  reboot:

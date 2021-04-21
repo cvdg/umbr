@@ -1,0 +1,11 @@
+#
+# Usage:
+#   ansible-playbook --ask-vault-pass -i 139.177.176.156, harden.yml
+#
+---
+- hosts: all
+  become: yes
+  roles:
+  - role: harden
+    tags:
+    - harden
